@@ -1,17 +1,16 @@
-# TEMPCodeur Desktop Application
+# TEMPCodeur Upper-Air Sounding Decoder
 
-A Python-based desktop application that decodes and plots meteorological upper-air sounding data made with Python, PyQt5, CSS, and QtDesigner.
+A desktop application that decodes meteorological upper-air sounding data made with PyQt5 framework, Python, and Qt Designer.
 
-## Menu Actions
+## Menu Bar
 
-- File (New, Open, Save, Save As, and Quit)
-- Edit (Undo, Redo, Cut, Copy, Paste, Clear, and Change Theme...)
-- Plot (Add Hodograph, Advanced Plotting, and Hodograph Settings > Sizes)
-- About (Help, and Information)
+- File (Open, and Quit)
+- Edit (Cut, Copy, Paste, and Clear)
+- About (Information)
 
 ![Menu Bar](documentation/menu.PNG)
 
-## Toolbar
+## Tool Bar
 
 Some actions from the menu are included in the toolbar for easier access. Actions are readily included with keyboard shortcuts. 
 
@@ -19,5 +18,4 @@ Some actions from the menu are included in the toolbar for easier access. Action
 
 ## Workspace
 
-Workspace includes the Decode Button, Code Dropdown Menu, Plot Button, and the Clear Button.
-(further explanation of qactions and qwidgets.)
+Workspace includes the Decode Button, Clear Button, Code Dropdown Menu, and the Input Text Field.
