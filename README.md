@@ -16,7 +16,7 @@ or copying from websites that upload soundings and pasting it on the input text 
 
 ![ogimet sounding](https://user-images.githubusercontent.com/64736073/134905999-5085073d-21a7-470f-ad6d-0577330dcc61.PNG)
 
-Before decoding the data, _=_ should be omitted at the end. This is to ensure that Sea Surface Data can be decoded properly and not return an _Invalid_ result.
+Before decoding the data, _=_ should be omitted at the end. This is to ensure that **Sea Surface Data** are decoded properly and not return an _Invalid_ result.
 
 ![tempcodeur with data](https://user-images.githubusercontent.com/64736073/134912641-cace1f20-b4bd-4dd2-8042-4989425acd9d.PNG)
 
