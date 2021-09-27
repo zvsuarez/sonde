@@ -2,11 +2,13 @@
 
 Windows desktop application that decodes meteorological upper-air sounding data made with PyQt5 framework, Python, and Qt Designer.
 
+## Interface
+
 ![interface](https://user-images.githubusercontent.com/64736073/134896933-5c003f89-4de0-43e0-8ad0-86a78f73e8b9.PNG)
 
 ## Usage
 
-Users can open _*txt_ files that contain a sounding data and the raw code will be automatically inserted in the input text field.
+Users can open **_txt_** files that contain a sounding data and the raw code will be automatically inserted in the input text field.
 
 ![text file](https://user-images.githubusercontent.com/64736073/134905719-d7852422-68e4-4de3-add6-29213f21cfdc.PNG)
 
@@ -26,7 +28,7 @@ A dialog window containing the result will appear once _Decode_ is clicked.
 
 ![result window](https://user-images.githubusercontent.com/64736073/134913198-5560d038-d6a5-4ed8-8fb3-5d8c7a8cec6a.PNG)
 
-This can be saved as an _xlsx_ file, and can be opened with spreadsheet programs.
+This can be saved as an **_xlsx_** file, and can be opened with spreadsheet programs.
 
 ![output](https://user-images.githubusercontent.com/64736073/134913378-41661bc5-d338-468f-91e6-e27e99d15610.PNG)
 
