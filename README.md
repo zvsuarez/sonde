@@ -1,6 +1,6 @@
 # TEMPCodeur Upper-Air Sounding Decoder
 
-Windows desktop application that decodes meteorological upper-air sounding data made with PyQt5 framework, Python, and Qt Designer.
+Windows desktop application that decodes meteorological upper-air sounding data made with **_PyQt5 framework_**, **_Python_**, and **_Qt Designer_**.
 
 ## Interface
 
