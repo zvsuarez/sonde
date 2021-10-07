@@ -57,7 +57,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Quit TEMPCodeur?</string>
+    <string>Quit Sonde?</string>
    </property>
   </widget>
   <widget class="QLabel" name="quit_icon">
@@ -70,7 +70,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/dialog_close.ico);</string>
+    <string notr="true">image: url(:/icons/ui/icons/dialog_close.ico);</string>
    </property>
    <property name="text">
     <string/>
@@ -78,7 +78,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="icons/resource.qrc"/>
+  <include location="../resource.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -19,8 +19,8 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="icons/resource.qrc">
-    <normaloff>:/icons/32x32.png</normaloff>:/icons/32x32.png</iconset>
+   <iconset resource="../resource.qrc">
+    <normaloff>:/icons/ui/icons/32x32.png</normaloff>:/icons/ui/icons/32x32.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -55,6 +55,26 @@
       <item>
        <property name="text">
         <string>TTDD</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PPAA</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PPBB</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PPCC</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PPDD</string>
        </property>
       </item>
      </widget>
@@ -199,8 +219,8 @@
   </action>
   <action name="action_Open">
    <property name="icon">
-    <iconset resource="icons/resource.qrc">
-     <normaloff>:/icons/folder.png</normaloff>:/icons/folder.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/icons/ui/icons/folder.png</normaloff>:/icons/ui/icons/folder.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Open...</string>
@@ -234,8 +254,8 @@
   </action>
   <action name="action_Quit">
    <property name="icon">
-    <iconset resource="icons/resource.qrc">
-     <normaloff>:/icons/cross-script.png</normaloff>:/icons/cross-script.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/icons/ui/icons/cross-script.png</normaloff>:/icons/ui/icons/cross-script.png</iconset>
    </property>
    <property name="text">
     <string>Quit...</string>
@@ -299,8 +319,8 @@
   </action>
   <action name="action_Cut">
    <property name="icon">
-    <iconset resource="icons/resource.qrc">
-     <normaloff>:/icons/scissors-blue.png</normaloff>:/icons/scissors-blue.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/icons/ui/icons/scissors-blue.png</normaloff>:/icons/ui/icons/scissors-blue.png</iconset>
    </property>
    <property name="text">
     <string>Cut</string>
@@ -319,8 +339,8 @@
   </action>
   <action name="action_Copy">
    <property name="icon">
-    <iconset resource="icons/resource.qrc">
-     <normaloff>:/icons/document-copy.png</normaloff>:/icons/document-copy.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/icons/ui/icons/document-copy.png</normaloff>:/icons/ui/icons/document-copy.png</iconset>
    </property>
    <property name="text">
     <string>Copy</string>
@@ -339,8 +359,8 @@
   </action>
   <action name="action_Paste">
    <property name="icon">
-    <iconset resource="icons/resource.qrc">
-     <normaloff>:/icons/clipboard-paste-document-text.png</normaloff>:/icons/clipboard-paste-document-text.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/icons/ui/icons/clipboard-paste-document-text.png</normaloff>:/icons/ui/icons/clipboard-paste-document-text.png</iconset>
    </property>
    <property name="text">
     <string>Paste</string>
@@ -359,8 +379,8 @@
   </action>
   <action name="action_Clear">
    <property name="icon">
-    <iconset resource="icons/resource.qrc">
-     <normaloff>:/icons/bin-metal.png</normaloff>:/icons/bin-metal.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/icons/ui/icons/bin-metal.png</normaloff>:/icons/ui/icons/bin-metal.png</iconset>
    </property>
    <property name="text">
     <string>Clear</string>
@@ -497,8 +517,8 @@
   </action>
   <action name="action_Information">
    <property name="icon">
-    <iconset resource="icons/resource.qrc">
-     <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/icons/ui/icons/information.png</normaloff>:/icons/ui/icons/information.png</iconset>
    </property>
    <property name="text">
     <string>Information</string>
@@ -520,7 +540,7 @@
   <tabstop>inputclearButton</tabstop>
  </tabstops>
  <resources>
-  <include location="icons/resource.qrc"/>
+  <include location="../resource.qrc"/>
  </resources>
  <connections/>
 </ui>

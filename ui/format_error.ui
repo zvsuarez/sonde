@@ -44,7 +44,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/warning.ico);</string>
+    <string notr="true">image: url(:/icons/ui/icons/warning.ico);</string>
    </property>
    <property name="text">
     <string/>
@@ -71,7 +71,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="icons/resource.qrc"/>
+  <include location="../resource.qrc"/>
  </resources>
  <connections>
   <connection>

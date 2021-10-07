@@ -83,7 +83,7 @@
     </font>
    </property>
    <property name="text">
-    <string>You have 5 days to use TEMPCodeur. Thank you!</string>
+    <string>You have 5 days to use Sonde. Thank you!</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -96,7 +96,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/icons/256x256.png);</string>
+    <string notr="true">image: url(:/icons/ui/icons/256x256.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -104,7 +104,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="icons/resource.qrc"/>
+  <include location="../resource.qrc"/>
  </resources>
  <connections>
   <connection>
