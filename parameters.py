@@ -978,6 +978,6 @@ class SigLevelsDD:
                 return f'{self.pressure} mb'
         else:
             if self.pressure[0] == '0':
-                return f'{(1000+int(self.pressure))/10} mb'
+                return f'{(1000+int(self.pressure))} mb'
             else:
-                return f'{int(self.pressure)/10} mb'
+                return f'{int(self.pressure)} mb'
