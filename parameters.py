@@ -34,7 +34,7 @@ class Date:
             return f"{self.month_word[int(self.month) % 12-1]} {self.day} {self.year} {self.hour[((int(self.utc[:2]) + 8) % 12) - 1]}:{self.utc[2:]} {self.meridiem}"
 
 
-class Tempcode:
+class Code:
     def __init__(self, code):
         self.code = code
 
@@ -75,8 +75,8 @@ class Dateplus:
         else:
             return f'{self.utc}:00 UTC'
 
-    def lwr_method(self, temp_code):
-        temp = Tempcode(temp_code)
+    def lwr_method(self, code):
+        temp = Code(code)
         if not(self.lwr.isnumeric()):
             if '/' in self.lwr:
                 return 'NA'
@@ -90,10 +90,10 @@ class Dateplus:
             else:
                 return 'NA'
 
-    def convert(self, temp_code):
+    def convert(self, code):
         day_reading = self.day_method()
         utc_reading = self.utc_method()
-        lwr_reading = self.lwr_method(temp_code)
+        lwr_reading = self.lwr_method(code)
 
         if len(self.code) != 5:
             return 'Invalid'
@@ -109,7 +109,7 @@ class Dateplus:
         return self.day
 
 #temp = Dateplus('13221')
-#print(temp.convert('TTAA')) #.convert(Tempcode(''))
+#print(temp.convert('TTAA')) #.convert(Code(''))
 
 class Temperature:
     def __init__(self, code):
@@ -649,7 +649,7 @@ class Cloud:
                 return 'Invalid'
         if self.nh == '1':
             return f'{self.nh} okta'
-        if int(self.nh) in range(2-10):
+        if int(self.nh) in range(2, 10):
             if int(self.nh) == 9:
                 return 'Obscure'
             else:
@@ -780,8 +780,6 @@ class Cloud:
         ch_reading = self.cloud_high()
         h = self.height()
 
-        if self.code == 'NA':
-            return 'NA'
         if len(self.indicator) != 5 or len(self.cloud) != 5:
             return 'Invalid'
         if not(self.indicator.isnumeric()) or not(self.cloud.isnumeric()):
@@ -981,3 +979,129 @@ class SigLevelsDD:
                 return f'{(1000+int(self.pressure))} mb'
             else:
                 return f'{int(self.pressure)} mb'
+
+
+class Dateminus:
+    def __init__(self, code):
+        self.code = code
+
+    def __init__(self, code):
+        self.day = code[0:2]
+        self.utc = code[2:4]
+        self.tme = code[-1]
+        self.code = code
+
+    def day_method(self):
+        if not(self.day.isnumeric()):
+            if '/' in self.day:
+                return 'NA'
+            else:
+                return 'Invalid'
+        if int(self.day) >= 82 or self.day == '00':
+            return 'Invalid'
+        if int(self.day) in range(32, 51):
+            return 'Invalid'
+        if int(self.day) in range(51, 82):
+            return f'Day {int(self.day) - 50}'
+        else:
+            return f'Day {int(self.day)}'
+
+    def utc_method(self):
+        if not(self.utc.isnumeric()):
+            if '/' in self.day:
+                return 'NA'
+            else:
+                return 'Invalid'
+        if int(self.utc) > 23:
+            return 'Invalid'
+        else:
+            return f'{self.utc}:00 UTC'
+
+    def tme_method(self):
+        equip = ['P/WME', 'Opttheo', 'Radtheo', 'Radar', 'Pf/WME', 'Omega', 'Loran-C', 'WindProf', 'SatNav', 'ReS']
+        
+        if not(self.lwr.isnumeric()):
+            if '/' in self.lwr:
+                return 'NA'
+            else:
+                return 'Invalid'
+        if self.tme == '0':
+            return equip[0]
+        elif self.tme == '1':
+            return equip[1]
+        elif self.tme == '2':
+            return equip[2]
+        elif self.tme == '3':
+            return equip[3]
+        elif self.tme == '4':
+            return equip[4]
+        elif self.tme == '5':
+            return equip[-5]
+        elif self.tme == '6':
+            return equip[-4]
+        elif self.tme == '7':
+            return equip[-3]
+        elif self.tme == '8':
+            return equip[-2]
+        elif self.tme == '9':
+            return equip[-1]
+        else:
+            return 'NA'
+
+    def convert(self):
+        day_reading = self.day_method()
+        utc_reading = self.utc_method()
+        tme_reading = self.tme_method()
+
+        if len(self.code) != 5:
+            return 'Invalid'
+        if not(self.code.isnumeric()):
+            if '/' in self.code:
+                return f'{day_reading} {utc_reading} {tme_reading}'
+            else:
+                return 'Invalid'
+        else:
+            return f'{day_reading} {utc_reading} {tme_reading}'
+
+    def feedback(self):
+        return self.day
+
+
+class Isobar:
+    def __init__(self, code):
+        self.code = code
+        self.indicator = code[:2]
+        self.n_isobar = code[2]
+        self.pressure = code[3:]
+    
+    def convert_isobar(self):
+        isobars = [850, 700, 500, 400, 300, 250, 200, 150, 100]
+        
+        if self.pressure == '85':
+            return f'{isobars[0]} mb'
+        elif self.pressure == '70':
+            return f'{isobars[1]} mb'
+        elif self.pressure == '50':
+            return f'{isobars[2]} mb'
+        elif self.pressure == '40':
+            return f'{isobars[3]} mb'
+        elif self.pressure == '30':
+            return f'{isobars[4]} mb'
+        elif self.pressure == '25':
+            return f'{isobars[-4]} mb'
+        elif self.pressure == '20':
+            return f'{isobars[-3]} mb'
+        elif self.pressure == '15':
+            return f'{isobars[-2]} mb'
+        elif self.pressure == '10':
+            return f'{isobars[-1]} mb'
+        else:
+            return 'NA'
+
+    def convert_n_iso(self):
+        return self.n_isobar
+
+#data = Isobar('55385')
+#print(data.convert_n_iso())
+#print(data.convert_isobar())
+
