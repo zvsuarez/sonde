@@ -222,7 +222,7 @@ class Ui_MainWindow(object):
         self.action_Clear.setText(_translate("MainWindow", "Clear"))
         self.action_Clear.setToolTip(_translate("MainWindow", "Clear all fields."))
         self.action_Information.setText(_translate("MainWindow", "Information"))
-        self.action_Information.setToolTip(_translate("MainWindow", "About SounDecoder."))
+        self.action_Information.setToolTip(_translate("MainWindow", "About Sonde."))
 import resource
 
 
