@@ -1067,7 +1067,7 @@ class Dateminus:
         return self.day
 
 
-class Isobar:
+class IsobarAA:
     def __init__(self, code):
         self.code = code
         self.indicator = code[:2]
@@ -1101,7 +1101,81 @@ class Isobar:
     def convert_n_iso(self):
         return self.n_isobar
 
-#data = Isobar('55385')
+#data = IsobarAA('55385')
 #print(data.convert_n_iso())
 #print(data.convert_isobar())
 
+class IsobarCC:
+    def __init__(self, code):
+        self.code = code
+        self.indicator = code[:2]
+        self.n_isobar = code[2]
+        self.pressure = code[3:]
+    
+    def convert_isobar(self):
+        isobars = [70, 50, 30, 20, 10]
+        
+        if self.pressure == '70':
+            return f'{isobars[0]} mb'
+        elif self.pressure == '50':
+            return f'{isobars[1]} mb'
+        elif self.pressure == '30':
+            return f'{isobars[2]} mb'
+        elif self.pressure == '20':
+            return f'{isobars[-2]} mb'
+        elif self.pressure == '10':
+            return f'{isobars[-1]} mb'
+        else:
+            return 'NA'
+
+    def convert_n_iso(self):
+        return self.n_isobar
+
+#data = IsobarCC('55370')
+#print(data.convert_n_iso())
+#print(data.convert_isobar())
+
+
+class Isoheight:
+    def __init__(self, code):
+        self.code = code
+        self.indicator = code[0]
+        self.base = code[1]
+        self.unit1 = code[2]
+        self.unit2 = code[3]
+        self.unit3 = code[4]
+
+    def convertu1(self):
+        if len(self.code) != 5:
+            return 'Invalid'
+        if self.unit1 == '/':
+            return 'NA'
+        if not(self.unit1.isnumeric()):
+            return 'Invalid'
+        else:
+            return f'{(int(self.base) * 10000) + (int(self.unit1) * 1000)} ft.'
+
+    def convertu2(self):
+        if len(self.code) != 5:
+            return 'Invalid'
+        if self.unit2 == '/':
+            return 'NA'
+        if not(self.unit2.isnumeric()):
+            return 'Invalid'
+        else:
+            return f'{(int(self.base) * 10000) + (int(self.unit2) * 1000)} ft.'
+
+    def convertu3(self):
+        if len(self.code) != 5:
+            return 'Invalid'
+        if self.unit3 == '/':
+            return 'NA'
+        if not(self.unit3.isnumeric()):
+            return 'Invalid'
+        else:
+            return f'{(int(self.base) * 10000) + (int(self.unit3) * 1000)} ft.'
+
+#sample = Isoheight('981//')
+#print(sample.convertu1())
+#print(sample.convertu2())
+#print(sample.convertu3())
