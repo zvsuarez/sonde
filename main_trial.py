@@ -1,81 +1,72 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
+from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMainWindow
+import PyQt5.QtCore as ptcore
 from PyQt5.uic import loadUi
-from ui_config import Ui_MainWindow     # MAIN_UI
-from decode_window import Ui_Dialog     # DECODE_RESULT_UI
+from main_ui import Ui_MainWindow   # main ui
+from result import Ui_Dialog        # result dialog
 import os
 import datetime
-# Resource qrc
-import resource                         # ICON_RESOURCE
-# Decode backend
-import temp_class                       # DECODE_BACKEND
+import resource                     # Resource files
+import parameters                   # Parameters for decoding
 
-# Quit dialog
+# Window Dialogs
 class QuitDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         loadUi('ui/quit_menu.ui', self)
         self.setFixedSize(380, 130)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
         self.buttonBox.accepted.connect(lambda: app.quit())
 
-# Clear dialog
 class ClearDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         loadUi('ui/clear_menu.ui', self)
         self.setFixedSize(380, 130)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
-# Information dialog
 class InfoDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         loadUi('ui/information_menu.ui', self)
         self.setWindowTitle('Information')
-        self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)
-        self.setFixedSize(570, 500)
-        #self.setWindowIcon()
+        self.setWindowFlag(ptcore.Qt.WindowContextHelpButtonHint, False)
+        self.setFixedSize(570, 495)
 
-# Unsupported dialog
 class UnsupportedDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         loadUi('ui/unsupported_error.ui', self)
-        self.setFixedSize(500, 160)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setFixedSize(480, 140)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
-# Text filled dialog
 class TextFilledDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         loadUi('ui/textfilled_error.ui', self)
         self.setFixedSize(440, 140)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
-# Format error dialog
 class FormatDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         loadUi('ui/format_error.ui', self)
         self.setFixedSize(380, 130)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
-class TempcodeDialog(QDialog):
+class CodeDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/tempcode_error.ui', self)
+        loadUi('ui/code_error.ui', self)
         self.setFixedSize(380, 130)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
 class ExpireDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         loadUi('ui/expired_window.ui', self)
         self.setWindowTitle('WARNING!')
-        self.setFixedSize(400, 320)
-        self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)
+        self.setFixedSize(560, 450)
+        self.setWindowFlag(ptcore.Qt.WindowContextHelpButtonHint, False)
 
 class IntroDialog1(QDialog):
     def __init__(self, parent=None):
@@ -83,7 +74,7 @@ class IntroDialog1(QDialog):
         loadUi('ui/introex1_window.ui', self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
 class IntroDialog2(QDialog):
     def __init__(self, parent=None):
@@ -91,7 +82,7 @@ class IntroDialog2(QDialog):
         loadUi('ui/introex2_window.ui', self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
 class IntroDialog3(QDialog):
     def __init__(self, parent=None):
@@ -99,7 +90,7 @@ class IntroDialog3(QDialog):
         loadUi('ui/introex3_window.ui', self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
 class IntroDialog4(QDialog):
     def __init__(self, parent=None):
@@ -107,7 +98,7 @@ class IntroDialog4(QDialog):
         loadUi('ui/introex4_window.ui', self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
 class IntroDialog5(QDialog):
     def __init__(self, parent=None):
@@ -115,12 +106,16 @@ class IntroDialog5(QDialog):
         loadUi('ui/introex5_window.ui', self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
 
-
-# Temp code integration class
+# Temp code integration
 # {
-#       OBSCURED CLASS
+#   obscured
+# }
+
+# Pressure code integration
+# {
+#   obscured
 # }
 
 with open('styles.qss', 'r') as f:
@@ -131,8 +126,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle('TEMPCodeur')
-        #self.setWindowIcon(QIcon('ui/icons/32x32.png'))
+        self.setWindowTitle('Sonde v.1a')
         self.resize(1024, 728)
         self.connect_signals()
         self.detect_text()
@@ -227,10 +221,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         dialog = FormatDialog(self)
         dialog.exec_()
 
-    def tempcode_dialog(self):
-        dialog = TempcodeDialog(self)
+    def code_dialog(self):
+        dialog = CodeDialog(self)
         dialog.exec_()
-    
+
     def expired_dialog(self):
         dialog = ExpireDialog(self)
         dialog.exec_()
@@ -256,7 +250,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         dialog.exec_()
 
     # {
-    #   OBSCURED FUNCTIONS
+    #  obscured method
     # }
 
     def open_dialog(self):
@@ -270,9 +264,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         data = f.read()
                         self.inputTextEdit.setPlainText(data)
                 except UnicodeDecodeError: 
-                    self.unsupported_dialog()   # dialog error showing codec charmap
+                    self.unsupported_dialog()
             if len(text) >= 1:
-                self.textfilled_dialog()    # dialog showing existing chars
+                self.textfilled_dialog()
             else:
                 pass
         else:
@@ -284,7 +278,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.setupUi(self.window, data, *args)
         self.window.show()
 
-# Clean string
+# Clean string input
     def clean_string(self, string):
         strip = string.strip('\n')
         clean = ' '.join(strip.split())
@@ -292,68 +286,113 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 # Decode function
     def decode(self):
-        temp_code = ['TTAA', 'TTBB', 'TTCC', 'TTDD']
+        code = ['TTAA', 'TTBB', 'TTCC', 'TTDD', 'PPAA', 'PPBB', 'PPCC', 'PPDD']
         input_decode = self.inputTextEdit.toPlainText()
         clean_str = self.clean_string(input_decode)
         if not(input_decode[:12].isnumeric()) and input_decode[0] != '/':
             self.format_dialog()
         if input_decode[:12].isnumeric() or input_decode[0] == '/':
-            if clean_str.split()[1] not in temp_code:
-                self.tempcode_dialog()
+            if clean_str.split()[1] not in code:
+                self.code_dialog()
             else:
                 if clean_str.split()[1] == self.codeBox.currentText():
-                    if clean_str.split()[1] == 'TTAA':
-                        data = Tempcode(clean_str)
-                        data.TTAC_main()
-                        data.tab_AA()
-                        try:
-                            dataset = data.setDataAC()
-                            self.open_decode_result(dataset, data.setArgsAC_row(), data.setArgsAC_col())
-                            data.clear_AC()
-                        except IndexError:
-                            dataset = data.setDataInvalid()
-                            self.open_decode_result(dataset, 1, 1)
-                        #print(dataset)
-                    if clean_str.split()[1] == 'TTBB':
-                        data = Tempcode(clean_str)
-                        data.TTBB_main()
-                        data.tab_BB()
-                        try:
-                            dataset = data.setDataBB()
-                            self.open_decode_result(dataset, data.setArgsBB_row(), data.setArgsBB_col())
-                            data.clear_BB()
-                        except IndexError:
-                            dataset = data.setDataInvalid()
-                            self.open_decode_result(dataset, 1, 1)
-                    if clean_str.split()[1] == 'TTCC':
-                        data = Tempcode(clean_str)
-                        data.TTAC_main()
-                        data.tab_CC()
-                        try:
-                            dataset = data.setDataAC()
-                            self.open_decode_result(dataset, data.setArgsAC_row(), data.setArgsAC_col())
-                            data.clear_AC()
-                        except IndexError:
-                            dataset = data.setDataInvalid()
-                            self.open_decode_result(dataset, 1, 1)
-                    if clean_str.split()[1] == 'TTDD':
-                        data = Tempcode(clean_str)
-                        data.TTDD_main()
-                        data.tab_DD()
-                        try:
-                            dataset = data.setDataDD()
-                            self.open_decode_result(dataset, data.setArgsDD_row(), data.setArgsDD_col())
-                            data.clear_DD()
-                        except IndexError:
-                            dataset = data.setDataInvalid()
-                            self.open_decode_result(dataset, 1, 1)
-                    else:
-                        pass
+                    if clean_str.split()[1][:2] == 'TT':
+                        if clean_str.split()[1] == 'TTAA':
+                            data = Tempcode(clean_str)
+                            data.TTAC_main()
+                            data.tab_AA()
+                            try:
+                                dataset = data.setDataAC()
+                                self.open_decode_result(dataset, data.setArgsAC_row(), data.setArgsAC_col())
+                                data.clear_AC()
+                            except IndexError:
+                                dataset = data.setDataInvalid()
+                                self.open_decode_result(dataset, 1, 1)
+                            #print(dataset)
+                        if clean_str.split()[1] == 'TTBB':
+                            data = Tempcode(clean_str)
+                            data.TTBB_main()
+                            data.tab_BB()
+                            try:
+                                dataset = data.setDataBB()
+                                self.open_decode_result(dataset, data.setArgsBB_row(), data.setArgsBB_col())
+                                data.clear_BB()
+                            except IndexError:
+                                dataset = data.setDataInvalid()
+                                self.open_decode_result(dataset, 1, 1)
+                        if clean_str.split()[1] == 'TTCC':
+                            data = Tempcode(clean_str)
+                            data.TTAC_main()
+                            data.tab_CC()
+                            try:
+                                dataset = data.setDataAC()
+                                self.open_decode_result(dataset, data.setArgsAC_row(), data.setArgsAC_col())
+                                data.clear_AC()
+                            except IndexError:
+                                dataset = data.setDataInvalid()
+                                self.open_decode_result(dataset, 1, 1)
+                        if clean_str.split()[1] == 'TTDD':
+                            data = Tempcode(clean_str)
+                            data.TTDD_main()
+                            data.tab_DD()
+                            try:
+                                dataset = data.setDataDD()
+                                self.open_decode_result(dataset, data.setArgsDD_row(), data.setArgsDD_col())
+                                data.clear_DD()
+                            except IndexError:
+                                dataset = data.setDataInvalid()
+                                self.open_decode_result(dataset, 1, 1)
+                        else:
+                            pass
+                    if clean_str.split()[1][:2] == 'PP':
+                        if clean_str.split()[1] == 'PPAA':
+                            data = Prescode(clean_str)
+                            data.PPAC_main()
+                            data.tab_AA()
+                            try:
+                                dataset = data.setDataAC()
+                                self.open_decode_result(dataset, data.setArgsAC_row(), data.setArgsAC_col())
+                                data.clear_AC()
+                            except IndexError:
+                                dataset = data.setDataInvalid()
+                                self.open_decode_result(dataset, 1, 1)
+                        if clean_str.split()[1] == 'PPBB':
+                            data = Prescode(clean_str)
+                            data.PPBD_main()
+                            data.tab_BD()
+                            try:
+                                dataset = data.setDataBD()
+                                self.open_decode_result(dataset, data.setArgsBD_row(), data.setArgsBD_col())
+                                data.clear_BD()
+                            except IndexError:
+                                dataset = data.setDataInvalid()
+                                self.open_decode_result(dataset, 1, 1)
+                        if clean_str.split()[1] == 'PPCC':
+                            data = Prescode(clean_str)
+                            data.PPAC_main()
+                            data.tab_CC()
+                            try:
+                                dataset = data.setDataAC()
+                                self.open_decode_result(dataset, data.setArgsAC_row(), data.setArgsAC_col())
+                                data.clear_AC()
+                            except IndexError:
+                                dataset = data.setDataInvalid()
+                                self.open_decode_result(dataset, 1, 1)
+                        if clean_str.split()[1] == 'PPDD':
+                            data = Prescode(clean_str)
+                            data.PPBD_main()
+                            data.tab_BD()
+                            try:
+                                dataset = data.setDataBD()
+                                self.open_decode_result(dataset, data.setArgsBD_row(), data.setArgsBD_col())
+                                data.clear_BD()
+                            except IndexError:
+                                dataset = data.setDataInvalid()
+                                self.open_decode_result(dataset, 1, 1)
                 else:
-                    self.tempcode_dialog()
+                    self.code_dialog()
         else:
             pass
-            #return print(clean_str.split()[1])
 
 app = QApplication([])
 app.setStyle('Fusion')
