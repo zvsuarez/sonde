@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>400</height>
+    <width>560</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,10 +20,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>260</y>
-     <width>281</width>
-     <height>31</height>
+     <x>115</x>
+     <y>310</y>
+     <width>330</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="palette">
@@ -66,7 +66,7 @@
    <property name="font">
     <font>
      <family>Segoe UI</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -78,16 +78,16 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>310</y>
-     <width>311</width>
-     <height>31</height>
+     <x>110</x>
+     <y>360</y>
+     <width>340</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Segoe UI</family>
-     <pointsize>9</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -97,16 +97,16 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>330</y>
-     <width>131</width>
-     <height>41</height>
+     <x>230</x>
+     <y>390</y>
+     <width>110</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Segoe UI</family>
-     <pointsize>9</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -116,10 +116,10 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>40</y>
-     <width>231</width>
-     <height>201</height>
+     <x>150</x>
+     <y>30</y>
+     <width>260</width>
+     <height>260</height>
     </rect>
    </property>
    <property name="styleSheet">
