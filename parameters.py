@@ -31,7 +31,7 @@ class Date:
                 self.meridiem = 'PM'
             else:
                 self.meridiem = 'AM'
-            return f"{self.month_word[int(self.month) % 12-1]} {self.day} {self.year} {self.hour[((int(self.utc[:2]) + 8) % 12) - 1]}:{self.utc[2:]} {self.meridiem}"
+            return f"{self.month_word[int(self.month) % 12-1]} {self.day} {self.year}\n {self.hour[((int(self.utc[:2]) + 8) % 12) - 1]}:{self.utc[2:]} {self.meridiem}"
 
 
 class Code:
@@ -99,11 +99,11 @@ class Dateplus:
             return 'Invalid'
         if not(self.code.isnumeric()):
             if '/' in self.code:
-                return f'{day_reading} {utc_reading} {lwr_reading}'
+                return f'{day_reading}\n {utc_reading}\n {lwr_reading}'
             else:
                 return 'Invalid'
         else:
-            return f'{day_reading} {utc_reading} {lwr_reading}'
+            return f'{day_reading}\n {utc_reading}\n {lwr_reading}'
 
     def feedback(self):
         return self.day
@@ -333,9 +333,9 @@ class Maxwindlevel:
             return 'NA'
         else:
             if self.indicator == '77':
-                return f'{self.pressure} mb\n!Level'
+                return f'{self.pressure} mb\n !Level'
             if self.indicator == '66':
-                return f'{self.pressure} mb\n=Wspd-Hi'
+                return f'{self.pressure} mb\n =Wspd-Hi'
 
 
 class Windshear:
@@ -373,13 +373,13 @@ class Windshear:
             if '/' in self.indicator:
                 return 'NA'
             if '/' in self.below or '/' in self.above:
-                return f'{below}\n{above}'
+                return f'{below}\n {above}'
             else:
                 return 'Invalid'
         if self.indicator != '4':
             return 'Invalid'
         else:
-            return f'{below}\n{above}'
+            return f'{below}\n {above}'
 
 
 class Seasurface:
@@ -623,11 +623,11 @@ class Seasurface:
             return 'Invalid'
         if not(self.system.isnumeric()) or not(self.utc.isnumeric()):
             if '/' in self.system or '/' in self.utc:
-                return f'{solar_data} {rad_data} {track_data} {utc_data}'
+                return f'{solar_data}\n {rad_data}\n {track_data}\n {utc_data}'
             else:
                 return 'Invalid'
         else:
-            return f'{solar_data} {rad_data} {track_data} {utc_data}'
+            return f'{solar_data}\n {rad_data}\n {track_data}\n {utc_data}'
 
 
 class Cloud:
@@ -786,13 +786,13 @@ class Cloud:
             if '/' in self.indicator:
                 return 'NA'
             if '/' in self.cloud:
-                return f'{nh_reading} {cl_reading} {h} {cm_reading} {ch_reading}'
+                return f'{nh_reading}\n {cl_reading}\n {h}\n {cm_reading}\n {ch_reading}'
             else:
                 return 'Invalid'
         if self.indicator != '41414':
             return 'Invalid'
         else:
-            return f'{nh_reading} {cl_reading} {h} {cm_reading} {ch_reading}'
+            return f'{nh_reading}\n {cl_reading}\n {h}\n {cm_reading}\n {ch_reading}'
 
 
 class GeopotenheightC:
@@ -1020,8 +1020,8 @@ class Dateminus:
     def tme_method(self):
         equip = ['P/WME', 'Opttheo', 'Radtheo', 'Radar', 'Pf/WME', 'Omega', 'Loran-C', 'WindProf', 'SatNav', 'ReS']
         
-        if not(self.lwr.isnumeric()):
-            if '/' in self.lwr:
+        if not(self.tme.isnumeric()):
+            if '/' in self.tme:
                 return 'NA'
             else:
                 return 'Invalid'
@@ -1057,11 +1057,11 @@ class Dateminus:
             return 'Invalid'
         if not(self.code.isnumeric()):
             if '/' in self.code:
-                return f'{day_reading} {utc_reading} {tme_reading}'
+                return f'{day_reading}\n{utc_reading}\n{tme_reading}'
             else:
                 return 'Invalid'
         else:
-            return f'{day_reading} {utc_reading} {tme_reading}'
+            return f'{day_reading}\n{utc_reading}\n{tme_reading}'
 
     def feedback(self):
         return self.day
@@ -1099,7 +1099,14 @@ class IsobarAA:
             return 'NA'
 
     def convert_n_iso(self):
-        return self.n_isobar
+        if len(self.code) != 5:
+            return 'Invalid'
+        if not(self.code.isnumeric()):
+            return 'NA'
+        if self.indicator != '55' and self.indicator != '44':
+            return 'Invalid'
+        else:
+            return self.n_isobar
 
 #data = IsobarAA('55385')
 #print(data.convert_n_iso())
@@ -1129,7 +1136,14 @@ class IsobarCC:
             return 'NA'
 
     def convert_n_iso(self):
-        return self.n_isobar
+        if len(self.code) != 5:
+            return 'Invalid'
+        if not(self.code.isnumeric()):
+            return 'NA'
+        if self.indicator != '55' and self.indicator != '44':
+            return 'Invalid'
+        else:
+            return self.n_isobar
 
 #data = IsobarCC('55370')
 #print(data.convert_n_iso())
@@ -1158,22 +1172,71 @@ class Isoheight:
     def convertu2(self):
         if len(self.code) != 5:
             return 'Invalid'
-        if self.unit2 == '/':
-            return 'NA'
         if not(self.unit2.isnumeric()):
-            return 'Invalid'
+            if self.unit2 == '/':
+                return 'NA'
+            else:
+                return 'Invalid'
         else:
             return f'{(int(self.base) * 10000) + (int(self.unit2) * 1000)} ft.'
 
     def convertu3(self):
         if len(self.code) != 5:
             return 'Invalid'
-        if self.unit3 == '/':
-            return 'NA'
         if not(self.unit3.isnumeric()):
-            return 'Invalid'
+            if self.unit3 == '/':
+                return 'NA'
+            else:
+                return 'Invalid'
         else:
             return f'{(int(self.base) * 10000) + (int(self.unit3) * 1000)} ft.'
+
+
+class WindPP:
+    def __init__(self, code):
+        self.code = code
+        self.wind_dir = code[:3]
+        self.wind_spd = code[3:]
+
+    def cardinal_dir(self, value):
+        dir_ind = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE','S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+        ind = round(value / (360/len(dir_ind)))
+        cardinal = dir_ind[ind % len(dir_ind)]
+        return cardinal
+
+    def convert(self, date):
+        YY = Dateminus(date)
+    
+        if len(self.code) != 5:
+            return 'Invalid'
+        if not(self.code.isnumeric()):
+            if '/' in self.wind_dir:
+                return 'NA'
+            if '/' in self.wind_spd:
+                wind_car = self.cardinal_dir(int(self.wind_dir))
+                if int(self.wind_dir) % 5 != 0:
+                    return f"{int(self.wind_dir)-1}{chr(176)} {wind_car} NA"
+                else:
+                    return f"{self.wind_dir}{chr(176)} {wind_car} NA"
+            else:
+                return 'Invalid'
+        if int(self.wind_dir) > 360:
+            return 'OuR'    #Out of Range
+        if int(self.wind_dir) % 5 != 0:
+            wind_car = self.cardinal_dir(int(self.wind_dir))
+            if int(YY.feedback()) > 50:
+                return f"{int(self.wind_dir)-1}{chr(176)} {wind_car} {int(self.wind_spd) + 100} kt"
+            else:
+                return f"{int(self.wind_dir)-1}{chr(176)} {wind_car} {int(self.wind_spd) + 100} m/s"
+        else:
+            wind_car = self.cardinal_dir(int(self.wind_dir))
+            if int(YY.feedback()) > 50:
+                return f"{self.wind_dir}{chr(176)} {wind_car} {self.wind_spd} kt"
+            else:
+                return f"{self.wind_dir}{chr(176)} {wind_car} {self.wind_spd} m/s"
+
+#wind = Wind('21034')
+#print(wind.convert('13221')) #.convert(Dateplus(''))
 
 #sample = Isoheight('981//')
 #print(sample.convertu1())
