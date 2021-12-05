@@ -88,7 +88,7 @@
     </font>
    </property>
    <property name="text">
-    <string>You have 2 days to use Sonde. Thank you!</string>
+    <string>You have until this day to use Sonde. Thank you!</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
