@@ -1,13 +1,13 @@
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMainWindow
 import PyQt5.QtCore as ptcore
 from PyQt5.uic import loadUi
-from main_ui import Ui_MainWindow   # main ui
-from result import Ui_Dialog        # result dialog
+from main_ui import Ui_MainWindow
+from result import Ui_Dialog
 import os
-import resource                     # resource files
-import parameters                   # parameters to decode
+import resource
+import parameters
 
-# Window dialogs
+# Window Dialogs
 class QuitDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -92,7 +92,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         QApplication.clipboard().dataChanged.connect(self.clipboard)
         self.inputTextEdit.selectionChanged.connect(self.detect_selection)
         self.detect_clipboard()
-        self.intro_dialog()
 
     def connect_signals(self):
         self.action_Open.triggered.connect(self.open_dialog)
@@ -182,10 +181,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def code_dialog(self):
         dialog = CodeDialog(self)
-        dialog.exec_()
-
-    def intro_dialog(self):
-        dialog = IntroDialog(self)
         dialog.exec_()
 
     def open_dialog(self):
@@ -332,5 +327,7 @@ app = QApplication([])
 app.setStyle('Fusion')
 app.setStyleSheet(styles)
 window = MainWindow()
+intro_dialog = IntroDialog()
 window.show()
+intro_dialog.exec_()
 app.exec_()

@@ -3,6 +3,7 @@ import PyQt5.QtCore as ptcore
 from PyQt5.uic import loadUi
 from main_ui import Ui_MainWindow   # main ui
 from result import Ui_Dialog        # result dialog
+from cryptography.fernet import Fernet
 import os
 import datetime
 import resource                     # Resource files
@@ -68,6 +69,14 @@ class ExpireDialog(QDialog):
         self.setFixedSize(560, 450)
         self.setWindowFlag(ptcore.Qt.WindowContextHelpButtonHint, False)
 
+class IntroDialog0(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        loadUi('ui/introex0_window.ui', self)
+        self.setWindowTitle('WELCOME!')
+        self.setFixedSize(490, 180)
+        self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+
 class IntroDialog1(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -121,6 +130,77 @@ class IntroDialog5(QDialog):
 with open('styles.qss', 'r') as f:
     styles = f.read()
 
+# Cryptography class
+# {
+#   obscured
+# }
+
+class Expiration:
+    def __init__(self):
+        self.expiredialog = ExpireDialog()
+        self.introdialog0 = IntroDialog0()
+        self.introdialog1 = IntroDialog1()
+        self.introdialog2 = IntroDialog2()
+        self.introdialog3 = IntroDialog3()
+        self.introdialog4 = IntroDialog4()
+        self.introdialog5 = IntroDialog5()
+
+    def trial(self):
+        #obscured variable
+        #target_dir = #directory
+        #trial_txt = #hardcoded_file
+        today = datetime.date.today()
+        try:
+            if not os.path.isdir(target_dir):
+                os.mkdir(target_dir)
+                if not os.path.isfile(target_dir+trial_txt):
+                    with open(target_dir+trial_txt, 'a') as f:
+                        f.write(str(today))
+                    #Crypto.gen_dir(Crypto())
+                    with open(target_dir+trial_txt, 'r') as g:
+                        data = g.read()
+                    return data
+            if os.path.isdir(target_dir):
+                if not os.path.isfile(target_dir+trial_txt):
+                    with open(target_dir+trial_txt, 'a') as f:
+                        f.write(str(today))
+                    #Crypto.gen_dir(Crypto())
+                    with open(target_dir+trial_txt, 'r') as g:
+                        data = g.read()
+                    return data
+                if os.path.isfile(target_dir+trial_txt):
+                    #Crypto.decrypt(Crypto())
+                    with open(target_dir+trial_txt, 'r') as f:
+                        data = f.read()
+                    return data
+        except:
+            pass
+
+    def expiration(self):
+        date_recorded = self.trial()
+        date_expiry = datetime.date.fromisoformat(date_recorded) + datetime.timedelta(days=5)
+        today = datetime.date.today()
+        interval = str(date_expiry - today)[0]
+        if date_expiry >= today:
+            if int(interval) == 0:
+                self.introdialog0.exec_()
+            if int(interval) == 1:
+                self.introdialog1.exec_()
+            if int(interval) == 2:
+                self.introdialog2.exec_()
+            if int(interval) == 3:
+                self.introdialog3.exec_()
+            if int(interval) == 4:
+                self.introdialog4.exec_()
+            if int(interval) == 5:
+                self.introdialog5.exec_()
+            #Crypto.encrypt(Crypto())
+        else:
+            self.expiredialog.exec_()
+            #Crypto.encrypt(Crypto())
+            return True
+
+
 # Main window
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -133,7 +213,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         QApplication.clipboard().dataChanged.connect(self.clipboard)
         self.inputTextEdit.selectionChanged.connect(self.detect_selection)
         self.detect_clipboard()
-        self.expiration()
+        self.check_expiration()
 
     def connect_signals(self):
         self.action_Open.triggered.connect(self.open_dialog)
@@ -225,34 +305,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         dialog = CodeDialog(self)
         dialog.exec_()
 
-    def expired_dialog(self):
-        dialog = ExpireDialog(self)
-        dialog.exec_()
-
-    def intro_dialog1(self):
-        dialog = IntroDialog1(self)
-        dialog.exec_()
-
-    def intro_dialog2(self):
-        dialog = IntroDialog2(self)
-        dialog.exec_()
-
-    def intro_dialog3(self):
-        dialog = IntroDialog3(self)
-        dialog.exec_()
-
-    def intro_dialog4(self):
-        dialog = IntroDialog4(self)
-        dialog.exec_()
-    
-    def intro_dialog5(self):
-        dialog = IntroDialog5(self)
-        dialog.exec_()
-
-    # {
-    #  obscured method
-    # }
-
     def open_dialog(self):
         dialog = QFileDialog()
         dialog_exec = dialog.getOpenFileName(self, 'Open Text File...', os.getcwd(), "Text Files (*.txt)")
@@ -308,7 +360,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                             except IndexError:
                                 dataset = data.setDataInvalid()
                                 self.open_decode_result(dataset, 1, 1)
-                            #print(dataset)
                         if clean_str.split()[1] == 'TTBB':
                             data = Tempcode(clean_str)
                             data.TTBB_main()
@@ -394,9 +445,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             pass
 
+    def check_expiration(self):
+        if Expiration.expiration(Expiration()) == True:
+            self.action_Open.setEnabled(False)
+            self.action_Clear.setEnabled(False)
+            self.action_Cut.setEnabled(False)
+            self.action_Copy.setEnabled(False)
+            self.action_Paste.setEnabled(False)
+            self.action_Information.setEnabled(False)
+            self.decodeButton.setEnabled(False)
+            self.inputclearButton.setEnabled(False)
+            self.codeBox.setEnabled(False)
+            self.inputTextEdit.setEnabled(False)
+        else:
+            pass
+
+
 app = QApplication([])
 app.setStyle('Fusion')
 app.setStyleSheet(styles)
 window = MainWindow()
+verification = Expiration()
 window.show()
+verification.expiration()
 app.exec_()
