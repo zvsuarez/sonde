@@ -1,24 +1,24 @@
-# TEMPCodeur Upper-Air Sounding Decoder
+# Sonde UASM (Upper Air Sounding Message) Decoder
 
-Windows desktop application that decodes meteorological upper-air sounding data made with **_PyQt5 framework_**, **_Python_**, and **_Qt Designer_**.
+A Windows desktop application for decoding meteorological upper-air sounding messages made with **_PyQt5_**, **_Python_**, and **_Qt Desig_**.
 
 ## Interface
 
-![interface](https://user-images.githubusercontent.com/64736073/134896933-5c003f89-4de0-43e0-8ad0-86a78f73e8b9.PNG)
+![interface](https://user-images.githubusercontent.com/64736073/146811186-51ee6403-550e-4325-8d22-baac8f63ed2f.PNG)
 
 ## Usage
 
-Users can open **_txt_** files that contain a sounding data and the raw code will be automatically inserted in the input text field.
+Users can open **_txt_** files that contain sounding data and the raw code will be automatically inserted in the input text field.
 
 ![text file](https://user-images.githubusercontent.com/64736073/134905719-d7852422-68e4-4de3-add6-29213f21cfdc.PNG)
 
 or copying from websites that upload soundings and pasting it on the input text field also works.
 
-![ogimet sounding](https://user-images.githubusercontent.com/64736073/134905999-5085073d-21a7-470f-ad6d-0577330dcc61.PNG)
+![reference](https://user-images.githubusercontent.com/64736073/146811308-36d3ba5c-156f-4b07-a6f3-45ba79257d5f.PNG)
 
 Before decoding the data, _=_ should be omitted at the end. This is to ensure that **Sea Surface Data** are decoded properly and not return an _Invalid_ result.
 
-![tempcodeur with data](https://user-images.githubusercontent.com/64736073/134912641-cace1f20-b4bd-4dd2-8042-4989425acd9d.PNG)
+![sonde filled](https://user-images.githubusercontent.com/64736073/146811852-cfead339-cf13-4154-ac1c-5a414837548c.PNG)
 
 Some buttons are disabled if the input text field is empty. Errors will be raised once an incorrect format and syntax is detected.
 
@@ -26,11 +26,11 @@ Some buttons are disabled if the input text field is empty. Errors will be raise
 
 A dialog window containing the result will appear once _Decode_ is clicked. 
 
-![result window](https://user-images.githubusercontent.com/64736073/134913198-5560d038-d6a5-4ed8-8fb3-5d8c7a8cec6a.PNG)
+![result](https://user-images.githubusercontent.com/64736073/146811505-b856f48a-df95-400c-a2df-4f550aef7666.PNG)
 
 This can be saved as an **_xlsx_** file, and can be opened with spreadsheet programs.
 
-![output](https://user-images.githubusercontent.com/64736073/134913378-41661bc5-d338-468f-91e6-e27e99d15610.PNG)
+![excel](https://user-images.githubusercontent.com/64736073/146811546-09432f89-dbc6-4b26-b5e8-5384a1af8025.PNG)
 
 ## References/User Guide
 
