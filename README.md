@@ -30,7 +30,7 @@ A dialog window containing the result will appear once _Decode_ is clicked.
 
 This can be saved as an **_xlsx_** file, and can be opened with spreadsheet programs.
 
-![excel](https://user-images.githubusercontent.com/64736073/146811546-09432f89-dbc6-4b26-b5e8-5384a1af8025.PNG)
+![excel](https://user-images.githubusercontent.com/64736073/146813202-1f0c5d42-ca5c-498f-9a61-99bbed20dccb.PNG)
 
 ## References/User Guide
 
