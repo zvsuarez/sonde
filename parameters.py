@@ -703,7 +703,7 @@ class Cloud:
         if self.cm == '4':
             return 'AltCmlP/Trans'
         if self.cm == '5':
-            return 'AltCmlB/TransS'
+            return 'AltCmlB/Trans'
         if self.cm == '6':
             return 'AltCml/CmlGen'
         if self.cm == '7':
