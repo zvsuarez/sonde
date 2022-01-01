@@ -1,121 +1,164 @@
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMainWindow
+from PyQt5.QtWinExtras import QtWin
 import PyQt5.QtCore as ptcore
 from PyQt5.uic import loadUi
-from main_ui import Ui_MainWindow   # main ui
-from result import Ui_Dialog        # result dialog
+from main_ui import Ui_MainWindow
+from result import Ui_Dialog
 from cryptography.fernet import Fernet
 import os
 import datetime
-import resource                     # Resource files
-import parameters                   # Parameters for decoding
+import resource
+import parameters
 
 # Window Dialogs
 class QuitDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/quit_menu.ui', self)
+        file = ptcore.QFile(':/ui/ui/quit_menu.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(380, 130)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
         self.buttonBox.accepted.connect(lambda: app.quit())
+        file.close()
 
 class ClearDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/clear_menu.ui', self)
+        file = ptcore.QFile(':/ui/ui/clear_menu.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(380, 130)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class InfoDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/information_menu.ui', self)
+        file = ptcore.QFile(':/ui/ui/information_menu.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('Information')
         self.setWindowFlag(ptcore.Qt.WindowContextHelpButtonHint, False)
         self.setFixedSize(570, 495)
+        file.close()
 
 class UnsupportedDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/unsupported_error.ui', self)
+        file = ptcore.QFile(':/ui/ui/unsupported_error.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(480, 140)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class TextFilledDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/textfilled_error.ui', self)
+        file = ptcore.QFile(':/ui/ui/textfilled_error.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(440, 140)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class FormatDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/format_error.ui', self)
+        file = ptcore.QFile(':/ui/ui/format_error.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(380, 130)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class CodeDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/code_error.ui', self)
+        file = ptcore.QFile(':/ui/ui/code_error.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(380, 130)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class ExpireDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/expired_window.ui', self)
+        file = ptcore.QFile(':/ui/ui/expired_window.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('WARNING!')
         self.setFixedSize(560, 450)
         self.setWindowFlag(ptcore.Qt.WindowContextHelpButtonHint, False)
+        file.close()
 
 class IntroDialog0(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/introex0_window.ui', self)
+        file = ptcore.QFile(':/ui/ui/introex0_window.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class IntroDialog1(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/introex1_window.ui', self)
+        file = ptcore.QFile(':/ui/ui/introex1_window.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class IntroDialog2(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/introex2_window.ui', self)
+        file = ptcore.QFile(':/ui/ui/introex2_window.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class IntroDialog3(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/introex3_window.ui', self)
+        file = ptcore.QFile(':/ui/ui/introex3_window.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class IntroDialog4(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/introex4_window.ui', self)
+        file = ptcore.QFile(':/ui/ui/introex4_window.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class IntroDialog5(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/introex5_window.ui', self)
+        file = ptcore.QFile(':/ui/ui/introex5_window.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(490, 180)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 # Temp code integration
 # {
@@ -200,6 +243,8 @@ class Expiration:
             #Crypto.encrypt(Crypto())
             return True
 
+myappid = 'com.sonde.app'
+QtWin.setCurrentProcessExplicitAppUserModelID(myappid)
 
 # Main window
 class MainWindow(QMainWindow, Ui_MainWindow):

@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog, QMainWindow
+from PyQt5.QtWinExtras import QtWin
 import PyQt5.QtCore as ptcore
 from PyQt5.uic import loadUi
 from main_ui import Ui_MainWindow
@@ -11,67 +12,90 @@ import parameters
 class QuitDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/quit_menu.ui', self)
+        file = ptcore.QFile(':/ui/ui/quit_menu.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(380, 130)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
         self.buttonBox.accepted.connect(lambda: app.quit())
+        file.close()
 
 class ClearDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/clear_menu.ui', self)
+        file = ptcore.QFile(':/ui/ui/clear_menu.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(380, 130)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class InfoDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/information_menu.ui', self)
+        file = ptcore.QFile(':/ui/ui/information_menu.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('Information')
         self.setWindowFlag(ptcore.Qt.WindowContextHelpButtonHint, False)
         self.setFixedSize(570, 495)
+        file.close()
 
 class UnsupportedDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/unsupported_error.ui', self)
+        file = ptcore.QFile(':/ui/ui/unsupported_error.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(480, 140)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class TextFilledDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/textfilled_error.ui', self)
+        file = ptcore.QFile(':/ui/ui/textfilled_error.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(440, 140)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class FormatDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/format_error.ui', self)
+        file = ptcore.QFile(':/ui/ui/format_error.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(380, 130)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class CodeDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/code_error.ui', self)
+        file = ptcore.QFile(':/ui/ui/code_error.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setFixedSize(380, 130)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
 class IntroDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('ui/introfull_window.ui', self)
+        file = ptcore.QFile(':/ui/ui/introfull_window.ui')
+        file.open(ptcore.QFile.ReadOnly)
+        loadUi(file, self)
         self.setWindowTitle('WELCOME!')
         self.setFixedSize(420, 180)
         self.setWindowFlag(ptcore.Qt.FramelessWindowHint)
+        file.close()
 
-# Temp code integration
+# Temperature code integration
 # {
 #   obscured
 # }
-
 # Pressure code integration
 # {
 #   obscured
@@ -79,6 +103,9 @@ class IntroDialog(QDialog):
 
 with open('styles.qss', 'r') as f:
     styles = f.read()
+
+myappid = 'com.sonde.app'
+QtWin.setCurrentProcessExplicitAppUserModelID(myappid)
 
 # Main window
 class MainWindow(QMainWindow, Ui_MainWindow):
