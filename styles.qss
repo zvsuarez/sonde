@@ -1,9 +1,0 @@
-QPushButton#decodeButton:hover {
-    background-color: #007500;
-    color: white;
-}
-
-QPushButton#inputclearButton:hover {
-    background-color: #a80000;
-    color: white;
-}
