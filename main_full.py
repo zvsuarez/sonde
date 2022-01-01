@@ -101,9 +101,6 @@ class IntroDialog(QDialog):
 #   obscured
 # }
 
-with open('styles.qss', 'r') as f:
-    styles = f.read()
-
 myappid = 'com.sonde.app'
 QtWin.setCurrentProcessExplicitAppUserModelID(myappid)
 
@@ -352,7 +349,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 app = QApplication([])
 app.setStyle('Fusion')
-app.setStyleSheet(styles)
+app.setStyleSheet("""
+QPushButton#decodeButton:hover {
+    background-color: #007500; 
+    color: white;
+} 
+QPushButton#inputclearButton:hover { 
+    background-color: #a80000; 
+    color: white;
+}
+""")
 window = MainWindow()
 intro_dialog = IntroDialog()
 window.show()

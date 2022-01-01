@@ -170,9 +170,6 @@ class IntroDialog5(QDialog):
 #   obscured
 # }
 
-with open('styles.qss', 'r') as f:
-    styles = f.read()
-
 # Cryptography class
 # {
 #   obscured
@@ -508,7 +505,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 app = QApplication([])
 app.setStyle('Fusion')
-app.setStyleSheet(styles)
+app.setStyleSheet("""
+QPushButton#decodeButton:hover {
+    background-color: #007500; 
+    color: white;
+} 
+QPushButton#inputclearButton:hover { 
+    background-color: #a80000; 
+    color: white;
+}
+""")
 window = MainWindow()
 verification = Expiration()
 window.show()
