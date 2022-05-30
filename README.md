@@ -8,7 +8,8 @@ A Windows desktop application for decoding meteorological upper-air sounding mes
 
 ## Installation
 
-> Download Sonde_v1a.zip [here](https://github.com/zvsuarez/sonde/releases)
+> Download Sonde_v1a.zip [here](https://github.com/zvsuarez/sonde/releases).
+
 Follow the instructions in the executable.
 
 ## Usage
