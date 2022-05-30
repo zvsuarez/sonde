@@ -1,10 +1,15 @@
-# Sonde UASM (Upper Air Sounding Message) Decoder
+# Sonde (Upper Air Sounding Message) Decoder
 
-A Windows desktop application for decoding meteorological upper-air sounding messages made with **_PyQt5_**, **_Python_**, and **_Qt Desig_**.
+A Windows desktop application for decoding meteorological upper-air sounding messages made with **_PyQt5_**, **_Python_**, and **_Qt Designer_**.
 
 ## Interface
 
 ![interface](https://user-images.githubusercontent.com/64736073/146811186-51ee6403-550e-4325-8d22-baac8f63ed2f.PNG)
+
+## Installation
+
+> Download Sonde_v1a.zip [here](https://github.com/zvsuarez/sonde/releases)
+Follow the instructions in the executable.
 
 ## Usage
 
