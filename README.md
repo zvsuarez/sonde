@@ -1,47 +1,35 @@
 # Sonde (Upper Air Sounding Message) Decoder
 
-A Windows desktop application for decoding meteorological upper-air sounding messages made with **_PyQt5_**, **_Python_**, and **_Qt Designer_**.
-
-## Interface
-
-![interface](https://user-images.githubusercontent.com/64736073/146811186-51ee6403-550e-4325-8d22-baac8f63ed2f.PNG)
+_Windows_ desktop application for decoding meteorological upper-air sounding messages made with **_Python_**, **Qt5**, and **_Qt Designer_**.
 
 ## Installation
 
 > Download Sonde_v1a.zip [here](https://github.com/zvsuarez/sonde/releases).
 
-Follow the instructions in the executable.
-
 ## Usage
 
-Users can open **_txt_** files that contain sounding data and the raw code will be automatically inserted in the input text field.
+Users can open **_.txt_** files that contain sounding data and the raw code will be automatically inserted in the input text field.
 
 ![text file](https://user-images.githubusercontent.com/64736073/134905719-d7852422-68e4-4de3-add6-29213f21cfdc.PNG)
 
-or copying from websites that upload soundings and pasting it on the input text field also works.
+or copying from websites that upload soundings and pasting it on the input text field.
 
 ![reference](https://user-images.githubusercontent.com/64736073/146811308-36d3ba5c-156f-4b07-a6f3-45ba79257d5f.PNG)
 
-Before decoding the data, _=_ should be omitted at the end. This is to ensure that **Sea Surface Data** are decoded properly and not return an _Invalid_ result.
+Before decoding the data, **=** should be omitted at the end. This is to ensure that **Sea Surface Data** are decoded properly and not return an **Invalid** result.
 
 ![sonde filled](https://user-images.githubusercontent.com/64736073/146811852-cfead339-cf13-4154-ac1c-5a414837548c.PNG)
 
-Some buttons are disabled if the input text field is empty. Errors will be raised once an incorrect format and syntax is detected.
+Errors will be raised once an incorrect format and syntax is detected.
 
 ## Output
 
-A dialog window containing the result will appear once _Decode_ is clicked. 
+A dialog window containing the result will appear once **Decode** is clicked. 
 
 ![result](https://user-images.githubusercontent.com/64736073/146811505-b856f48a-df95-400c-a2df-4f550aef7666.PNG)
 
-This can be saved as an **_xlsx_** file, and can be opened with spreadsheet programs.
-
-![excel](https://user-images.githubusercontent.com/64736073/146813202-1f0c5d42-ca5c-498f-9a61-99bbed20dccb.PNG)
+**_.xlsx_** and **_.xls_** are the currently available formats for saving. Implementations to save as **_.csv_** will be pushed at an unidentified date.
 
 ## References/User Guide
 
-References for analysing the sounding results especially the _Solar_, _Radiosonde_, _Tracking System_, and _Cloud_ data are included in the release package of the software. The **_Federal Meteorological Handbook No. 3_** is also available [here](https://www.icams-portal.gov/publications/fmh/FMH3/00-entire-FMH3.pdf).
-
-## Credits
-
-Icons are from **_Yusuke Kamiyamane's Fugue Icon set_**, **_FlatIcons_** and **_Freepik_**.
+References for analysing the sounding results for: _Solar_, _Radiosonde_, _Tracking System_, and _Cloud_ data are included in the release package of the software. The **_Federal Meteorological Handbook No. 3_** is also available [here](https://www.icams-portal.gov/publications/fmh/FMH3/00-entire-FMH3.pdf).
